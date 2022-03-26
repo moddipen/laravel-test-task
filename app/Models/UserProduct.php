@@ -19,6 +19,10 @@ class UserProduct extends Model
         return $this->belongsTo(Product::class);
     }
 
+    public function active_product(){
+        return $this->belongsTo(Product::class)->where("status",0);
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
     }
