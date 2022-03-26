@@ -67,7 +67,7 @@
 
                                       <label>
 
-                                          <input type="checkbox" name="remember"> Remember Me
+                                          <a href="{{ route('registration') }}">Register</a>
 
                                       </label>
 

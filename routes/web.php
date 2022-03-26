@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/login',[AuthController::class,'index'])->name("login");
+Route::get('/',[AuthController::class,'index'])->name("login");
 Route::get('/logout',[AuthController::class,'logout'])->name("logout");
 Route::get('/dashboard',[AuthController::class,'dashboard'])->name("dashboard")->middleware("verified");
 Route::post('/login/action',[AuthController::class,'login_action'])->name("login.action");
