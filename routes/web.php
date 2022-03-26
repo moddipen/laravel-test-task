@@ -22,6 +22,10 @@ Route::post('/login/action',[AuthController::class,'login_action'])->name("login
 Route::get('/register',[AuthController::class,'registation'])->name("registration");
 Route::post('/register',[AuthController::class,'registation_create'])->name("registration.create");
 
+Route::middleware(['auth','isAdmin'])->group(function(){
+    Route::get('/admin/dashboard',[AuthController::class,'admin_dashboard'])->name("admin.dashboard");
+});
+
 Route::get('/email/verify', function (){
     return view("auth.verify_email");
 })->middleware('auth')->name('verification.message');
