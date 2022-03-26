@@ -8,11 +8,17 @@
                 <div class="card">
                     <div class="card-header">
                    
-                        <div class="row">
-                            <div class="col-xs-6 col-lg-6">
-                                Dashboard
+                    <div class="row">
+                            <div class="col-xs-3 col-lg-3">
+                            <a href="{{ route('dashboard') }}">Dashboard</a>
                             </div>
-                            <div class="col-xs-6  col-lg-6 text-right">
+                            <div class="col-xs-3 col-lg-3 text-center">
+                                <a href="{{ route('products') }}">Products</a>
+                            </div>
+                            <div class="col-xs-3 col-lg-3 text-center">
+                                <a href="{{ route('user.products') }}">My Products</a>
+                            </div>
+                            <div class="col-xs-3  col-lg-3 text-right">
                                 <a href="{{ route('logout') }}">Logout</a>
                             </div>
                         </div>                    

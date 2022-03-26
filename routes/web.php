@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserProductController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 /*
@@ -22,6 +23,9 @@ Route::get('/dashboard',[AuthController::class,'dashboard'])->name("dashboard")-
 Route::post('/login/action',[AuthController::class,'login_action'])->name("login.action");
 Route::get('/register',[AuthController::class,'registation'])->name("registration");
 Route::post('/register',[AuthController::class,'registation_create'])->name("registration.create");
+Route::get('/products',[ProductController::class,'product_list'])->name("products");
+Route::get('/user/products',[UserProductController::class,'list'])->name("user.products");
+Route::post('/purchase',[ProductController::class,'purchase'])->name("purchase");
 
 Route::middleware(['auth','isAdmin'])->group(function(){
     Route::get('/admin/dashboard',[AuthController::class,'admin_dashboard'])->name("admin.dashboard");

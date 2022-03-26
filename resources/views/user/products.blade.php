@@ -2,20 +2,24 @@
 @section('content')
 <main class="login-form">
     <div class="cotainer">
-    
+        
+        <div class="custom-message"></div>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
                    
                         <div class="row">
-                            <div class="col-xs-4 col-lg-4">
-                            <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                            <div class="col-xs-3 col-lg-3">
+                            <a href="{{ route('dashboard') }}">Dashboard</a>
                             </div>
-                            <div class="col-xs-4 col-lg-4 text-center">
-                                <a href="{{ route('admin.products') }}">Products</a>
+                            <div class="col-xs-3 col-lg-3 text-center">
+                                <a href="{{ route('products') }}">Products</a>
                             </div>
-                            <div class="col-xs-4  col-lg-4 text-right">
+                            <div class="col-xs-3 col-lg-3 text-center">
+                                <a href="{{ route('user.products') }}">My Products</a>
+                            </div>
+                            <div class="col-xs-3  col-lg-3 text-right">
                                 <a href="{{ route('logout') }}">Logout</a>
                             </div>
                         </div>                    
@@ -27,38 +31,26 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Stock</th>
-                    <th>Price</th>
-                    <th>Image</th>
-                    <th>Description</th>
-                    <th>Status</th>                    
+                    <th>Qty</th>
+                    <th>Cost</th>
+                    <th>Image</th>                                       
                 </tr>
                 <tbody>
                     @if(!empty($products))
                         @foreach($products as $product)
                             <tr>
                                 <td>
-                                    {{ $product->name }}
+                                    {{ $product->product->name }}
                                 </td>
                                 <td>
-                                    {{ $product->stock }}
+                                    {{ $product->purchase_qty }}
                                 </td>
                                 <td>
-                                    {{ $product->price }}
+                                    {{ $product->total_amount }}
                                 </td>
                                 <td>
-                                    {{ $product->description }}
-                                </td>
-                                <td>
-                                    <img height="50" width="50" src="{{ $product->image }}">                                    
-                                </td>
-                                <td>
-                                    @if($product->status == 0)
-                                        {{ __("Active") }}
-                                    @else
-                                        {{ __("In Active") }}
-                                    @endif                                    
-                                </td>
+                                    <img height="50" width="50" src="{{ $product->product->image }}">                                    
+                                </td>                                
                             </tr>
                         @endforeach
                     @endif
@@ -99,5 +91,5 @@
     <script src="{{ asset('assets') }}/js/datatables.net-buttons/js/buttons.html5.min.js"></script>
     <script src="{{ asset('assets') }}/js/datatables.net-buttons/js/buttons.flash.min.js"></script>
     <script src="{{ asset('assets') }}/js/datatables.net-buttons/js/buttons.print.min.js"></script>    
-    <script src="{{ asset('assets') }}/js/product-list.js"></script>   
+    <script src="{{ asset('assets') }}/js/product-list.js"></script>        
 @endpush
