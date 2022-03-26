@@ -36,6 +36,6 @@
 <body class="{{ $class ?? '' }}">
     
     @yield('content')
-
+    @stack('js')
 </body>
 </html>
