@@ -2,20 +2,24 @@
 @section('content')
 <main class="login-form">
     <div class="cotainer">
-    
+        
+        <div class="custom-message"></div>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
                    
                         <div class="row">
-                            <div class="col-xs-4 col-lg-4">
-                            <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                            <div class="col-xs-3 col-lg-3">
+                            <a href="{{ route('dashboard') }}">Dashboard</a>
                             </div>
-                            <div class="col-xs-4 col-lg-4 text-center">
-                                <a href="{{ route('admin.products') }}">Products</a>
+                            <div class="col-xs-3 col-lg-3 text-center">
+                                <a href="{{ route('products') }}">Products</a>
                             </div>
-                            <div class="col-xs-4  col-lg-4 text-right">
+                            <div class="col-xs-3 col-lg-3 text-center">
+                                <a href="{{ route('user.products') }}">My Products</a>
+                            </div>
+                            <div class="col-xs-3  col-lg-3 text-right">
                                 <a href="{{ route('logout') }}">Logout</a>
                             </div>
                         </div>                    
@@ -29,9 +33,10 @@
                     <th>Name</th>
                     <th>Stock</th>
                     <th>Price</th>
-                    <th>Image</th>
                     <th>Description</th>
-                    <th>Status</th>                    
+                    <th>Image</th>                   
+                    <th>Status</th> 
+                    <th>Buy</th>                    
                 </tr>
                 <tbody>
                     @if(!empty($products))
@@ -44,7 +49,7 @@
                                     {{ $product->stock }}
                                 </td>
                                 <td>
-                                    {{ $product->price }}
+                                    {{ $product->price_per_item }}
                                 </td>
                                 <td>
                                     {{ $product->description }}
@@ -58,6 +63,10 @@
                                     @else
                                         {{ __("In Active") }}
                                     @endif                                    
+                                </td>
+                                <td>
+                                    <input type="text" name="qty" class="form-control qty" id="qty">
+                                    <a data-id="{{ $product->id }}" href="{{ route('purchase') }}" class="purchase btn btn-warning">Buy</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -100,4 +109,5 @@
     <script src="{{ asset('assets') }}/js/datatables.net-buttons/js/buttons.flash.min.js"></script>
     <script src="{{ asset('assets') }}/js/datatables.net-buttons/js/buttons.print.min.js"></script>    
     <script src="{{ asset('assets') }}/js/product-list.js"></script>   
+    <script src="{{ asset('assets') }}/js/product-purchase.js"></script>   
 @endpush
