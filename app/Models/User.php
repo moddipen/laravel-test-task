@@ -43,6 +43,10 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public function user_products(){
-        return $this->hanMany(UserProuct::class);
+        return $this->hasMany(UserProduct::class);
+    }
+
+    public function total_sum_of_amount(){
+        return $this->hasMany(UserProduct::class)->sum("total_amount");
     }
 }
