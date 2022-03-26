@@ -27,7 +27,12 @@ class AuthController extends Controller{
         
         $credentials = $request->only("email","password");
         if(Auth::attempt($credentials)){
-            return redirect()->intended('dashboard')->withSuccess("Logged in successfully");
+            if(Auth::user()->role == 1){
+                return redirect()->intended('/admin/dashboard')->withSuccess("Logged in successfully");
+            }else{
+                return redirect()->intended('dashboard')->withSuccess("Logged in successfully");
+            }
+            
         }else{
             return redirect("/email/verify-note")->withError("Please verify email");
         }
@@ -56,6 +61,10 @@ class AuthController extends Controller{
     
     public function dashboard(){
         return view("dashboard");
+    }
+
+    public function admin_dashboard(){
+        return view("admin.dashboard");
     }
 }
 ?>
